@@ -1,0 +1,31 @@
+{% extends 'music/base.html'%}
+{% load static %}
+
+{% block title %} Delete Employee Record {% endblock %}
+
+{% block body_class %}body1{% endblock %}
+{% block body %}
+<script>
+    document.body.style.opacity='1';
+</script>
+
+        <!-- For delete-->
+        <div id="id01" class="modalvik">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+              <form class="modal-contentvik" action="{% url 'music:deleteemployee' employees.id %}" method="post">
+                  {% csrf_token %}
+                <div class="containervik">
+                  <h2>Delete Employee:<b style="color:red"> {{ employees.id }}</b></h2>
+                                  <p style="color:#CC9900">Are you sure you want to delete? </p>
+
+                  <div class="clearfix">
+                    <a href="{% url 'music:index' %}" class="btn btn-primary" onclick="document.getElementById('id01').style.display='none'"
+                       class="btn btn-primary">Cancel</a>
+                    <button type="submit" onclick="document.getElementById('id01').style.display='none'" class="btn btn-danger">Delete</button>
+                  </div>
+                </div>
+              </form>
+        </div>
+    <!--ends here-->
+
+{% endblock %}

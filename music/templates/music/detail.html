@@ -1,0 +1,17 @@
+{% extends 'music/base.html' %}
+{% block title %}Song Details {% endblock %}
+{% load static %}
+{% block body %}
+
+<!--img src="{{ employee.first_name }}"-->
+<h1>{{ employee.first_name }}</h1>
+<h2>{{ employee.middle_name }}</h2>
+<h3>{{ employee.last_name }}</h3>
+
+{% if error_message %}
+<p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+
+
+{%  endblock %}

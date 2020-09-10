@@ -1,0 +1,58 @@
+{% extends 'music/base.html'%}
+{% load static %}
+
+{% block title %} Create Absence {% endblock %}
+
+{% block body_class %}body2{% endblock %}
+
+{% block body %}
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$( function() {
+$( "#startdate,#enddate" ).datepicker({
+    dateFormat : 'dd-mm-yy',
+    //showOn: "both",
+    //buttonImage: "/static/music/images/b_calendar1.png",
+    //buttonImageOnly: true,
+    //buttonText: "Select date",
+    changeMonth: true,
+    changeYear: true,
+});
+//$( "#enddate" ).datepicker({ minDate: -20, maxDate: "+1M +15D" });
+} );
+</script>
+<script>
+    document.body.style.opacity='1';
+</script>
+<script type = "text/javascript">
+    window.onload = function () {
+        document.onkeydown = function (e) {
+            return (e.which || e.keyCode) != 116;
+        };
+    }
+</script>
+$(document).on("keydown", disableButtonsDown);
+
+<h2>Date Validation Using jQuery Datepicker</h2>
+<form class="form-horizontal" action="{% url 'music:createleave' %}" method="post">
+    {% csrf_token %}
+<p> Leave Type
+<select id="leavetype" name="leavetype">
+  <option value="1"> Annual Leave </option>
+  <option value="2"> Sick Leave </option>
+  <option value="3"> Casual Leave </option>
+</select>
+</p>
+<p>Start Date: <input type="text" id="startdate" name="startdate" class="date calimage"></p>
+<p>End Date: <input type="text" id="enddate" name="enddate" class="date calimage"></p>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+     <button type="submit" class="btn btn-primary mr-10" name="apply" value="1">Apply</button>
+     <button type="submit" class="btn btn-warning mr-10" name="attach" value="2">Attachment</button>
+    </div>
+  </div>
+</form>
+{% endblock %}

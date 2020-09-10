@@ -1,0 +1,31 @@
+{% extends 'music/base.html' %}
+{% block title %}Dynamic Lov {% endblock %}
+{% load static %}
+
+</head>
+{% block body %}
+<script type="text/javascript">
+$(document).ready(function()
+{
+    $.fn.modal.Constructor.prototype.enforceFocus = function () {};
+    //alert("Inside seelct 2")
+    $('#departmentId').select2();
+
+});
+</script>
+<script type="text/javascript">
+    function getListValue()
+    {
+        alert(document.getElementById("departmentId").value);
+    }
+</script>
+<div id="lovDiv" name="lovDiv">
+    <hr>
+    <select name="departmentId" id="departmentId" width="150px" style="overflow:hidden;" onchange="getListValue()">
+        <option disabled="true" selected="--Select Department Name--"></option>
+         {% for result in results %}
+        <option value="{{ result.id}}">{{result.department_name}}</option>
+        {% endfor %}
+    </select>
+</div>
+{%  endblock %}

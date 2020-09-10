@@ -1,0 +1,123 @@
+{% extends 'music/base.html' %}
+{% block title %}Edit Employees {% endblock %}
+{% load static %}
+
+{% block body_class %}body3{% endblock %}
+
+{% block body %}
+<script>
+    document.body.style.opacity='1';
+</script>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("departmentname").value;
+  document.getElementById("demo").innerHTML = "You selected: " + x;
+  $('#departmentname').select2();
+}
+</script>
+<script>
+ $(document).ready(function () {
+ //alert("inside date");
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+ if(dd<10){
+        dd='0'+ dd.toString();
+    }
+    if(mm<10){
+        mm='0'+ mm.toString();
+    }
+
+var  maxDate  = yyyy + '-' + mm + '-' + dd ;
+//alert("inside date::" + today);
+val = document.getElementById("dob").value;
+//alert("inside date current val::" + val);
+//document.getElementById("dob").setAttribute("max", maxDate );
+//$("#dob").attr('max', maxDate);
+//$("#dob").prop('max', maxDate);
+document.getElementById("dob").max = maxDate ;
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function()
+{
+    //alert("Inside seelct 2")
+    $('#departmentname').select2();
+});
+</script>
+<h2 style="text-align:center">Update Employees using Department List of values</h2>
+<br>
+ {% if messages %}
+  {% for message in messages %}
+  <p style="color:green;text-align:center"><span class="glyphicon glyphicon-ok" style="color: green; font-size: 20px"></span>{{ message }}</p>
+  {% endfor %}
+{% endif %}
+
+<div class="container" style="border:2px green;">
+
+  <form class="form-horizontal" action="{% url 'music:gotoeditpage' employees.id %}" method="post">
+
+    {% csrf_token %}
+    <div class="form-group col-md">
+      <label class="control-label col-sm-2" for="firstname">FirstName:</label>
+      <div class="col-sm-10">
+      <input type="text" class="form-control" id="firstname" placeholder="FirstName"  name="firstname" value="{{ employees.first_name }}">
+        </div>
+    </div>
+    <div class="form-group col-md">
+      <label class="control-label col-sm-2" for="middlename">MiddleName:</label>
+      <div class="col-sm-10">
+      <input type="text" class="form-control" id="middlename" placeholder="MiddleName" name="middlename" value="{{ employees.middle_name }}">
+        </div>
+    </div>
+    <div class="form-group col-md">
+      <label class="control-label col-sm-2" for="lastname">LastName:</label>
+      <div class="col-sm-10">
+      <input type="text" class="form-control" id="lastname" placeholder="LastName" name="lastname" value="{{ employees.last_name }}">
+        </div>
+    </div>
+    <div class="form-group col-md">
+      <label class="control-label col-sm-2" for="emailid">Email Id:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="emailid" placeholder="Email Id" name="emailid" value="{{ employees.email_id }}">
+      </div>
+    </div>
+    <div class="form-group col-md">
+      <label class="control-label col-sm-2" for="dob">Date of Birth:</label>
+        <div class='input-group date' id='datetimepicker1'>
+          <div class="col-sm-12">
+          <input type="date" class="form-control" data-date="" data-date-format="DD-MM-YYYY" id="dob" value="{{ employees.date_of_birth|date:'Y-m-d' }}" placeholder="Date of Birth" name="dob" style="border-radius:5px" >
+         </div>
+
+        </div>
+    </div>
+    <div class="form-group col-md-auto">
+      <label class="control-label col-sm-2" for="departmentname">Department:</label>
+      <div class="col-sm-10">
+      <select id="departmentname" class="form-control selectpicker" data-style="btn-danger" onchange="myFunction()" onclick="myFunction()"  name="departmentname">
+        {% for vik in one_department %}
+          <option value="{{ vik.id }}" selected>{{ vik.department_name }}</option>
+          {% endfor %}
+        {% for result in all_departments %}
+
+            <option value="{{ result.id }}" >{{ result.department_name }}</option>
+        {% endfor %}
+       </select>
+      </div>
+    </div>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+     <button type="submit" class="btn btn-danger mr-10" name="createbtn" value="1">Submit</button>
+     <a href="{% url 'music:index' %}" class="btn btn-primary" class="btn btn-primary">Cancel</a>
+      <p id="demo"></p>
+    </div>
+  </div>
+
+  </form>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'music/base.html' %}
+{% block title %}Search Details {% endblock %}
+{% load static %}
+
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        alert("Inside seelct 2")
+        $('#employeeid').select2();
+    });
+</script>
+{% block body %}
+
+<div class="container">
+    <h1> Search Data and Button action Details</h1>
+    <form method="post" action="{% url 'music:search' %}">
+
+        <div class="form-group">
+            <div class="col-lg-5">
+                <input type="text" name="search" class="form-control" placeholder="Enter name or city">
+            </div>
+            <label class="col-lg-2">
+                <button type="submit" class="btn btn-danger" value="1" name="searchbtn">Search</button>
+                <button type="submit" class="btn btn-default" value="2" name="resetbtn">Reset</button>
+            </label>
+        </div>
+    </form><br>
+</div>
+<div>
+    <hr>
+    <select name="employeeid" id="employeeid" width="150px">
+        <option disabled="true" selected="--Select Employeee Name--"></option>
+         {% for result in sr %}
+        <option value="{{ result.id}}">{{result.name}}</option>
+        {% endfor %}
+    </select>
+</div>
+<div>
+    {% if messages %}
+        <ul class="messages">
+            {% for k in messages %}
+            <li style="color: red">{{ k }}</li>
+            {% endfor %}
+        </ul>
+
+    {% endif %}
+</div><br>
+
+<div style="color: blue">
+    {% if sr %}
+    <a href="{% url 'music:exportdata' %}">Export all users</a>
+    <a href="{% url 'music:generate_PDF' %}">Export all users</a>
+        {% for k in sr %}
+          <table border="1px" width="300px">
+              <tr>
+                  <td>Name</td>
+                  <td>{{ k.name }}</td>
+              </tr>
+              <tr>
+                  <td>Email</td>
+                  <td>{{ k.email }}</td>
+              </tr>
+              <tr>
+                  <td>City</td>
+                  <td>{{ k.city }}</td>
+              </tr>
+              <tr>
+                  <td>Marks</td>
+                  <td>{{ k.marks }}</td>
+              </tr>
+          </table>
+    <a href="{% url 'music:exportdata' %}">Export all users</a>
+    <a href="{% url 'music:generate_PDF' %}">Export all users</a>
+    {% if sr.has_previous %}
+        <a href="?page=1">First</a>
+        <a href="?page={{ sr.previous_page_number }}">Previous</a>
+    {% endif %}
+    {{ sr.number }}<b>{{ sr.paginator.num_pages }}</b>
+    {% if sr.has_next %}
+    <a href="?page={{ sr.next_page_number }}">Next</a>
+    <a href="?page={{ sr.paginator.num_pages }}">Last</a>
+    {% endif %}
+        {% endfor %}
+    {% endif %}
+</div>
+
+{%  endblock %}

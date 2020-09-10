@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Download to PDF demo</title>
+</head>
+<body>
+<div style="color: blue">
+    {% if sr %}
+
+    <a href="{% url 'music:generate_PDF' %}">Export all users</a>
+        {% for k in sr %}
+          <table border="1px" width="300px">
+              <tr>
+                  <td>Name</td>
+                  <td>{{ k.name }}</td>
+              </tr>
+              <tr>
+                  <td>Email</td>
+                  <td>{{ k.email }}</td>
+              </tr>
+              <tr>
+                  <td>City</td>
+                  <td>{{ k.city }}</td>
+              </tr>
+              <tr>
+                  <td>Marks</td>
+                  <td>{{ k.marks }}</td>
+              </tr>
+          </table>
+      <a href="{% url 'music:generate_PDF' %}">Export all users</a>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+{% extends 'music/base.html' %}
+{% block title %}Add Attachments {% endblock %}
+{% load static %}
+
+{% block body_class %}body3{% endblock %}
+
+{% block body %}
+
+
+<script type="text/javascript">
+function getRowid(id)
+{
+    //alert("Id is :" + id);
+    console.log("Inside getRowid::" + id);
+    urlfinal = "http://127.0.0.1:8000/music/"+ id + "/deleteattachment/";
+    //alert("urlfinal::" + urlfinal);
+    console.log("Inside getRowid urlfinal::" + urlfinal);
+    $.ajax({
+            method: "POST",
+            url: urlfinal,
+            data: { 'id':id },
+            beforeSend: function(xhr)
+            {
+                xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+            },
+            success: function(response)
+			{
+              console.log("Success");
+			  console.log(response.success);
+			  $('#attachments_'+id).remove()
+			  console.log("After remove");
+            },
+            error: function(error_data)
+			{
+              console.log("error");
+			}
+ });
+}
+function Enablecontrols()
+{
+    //alert("inside function" + ($('#document').get(0).files.length === 0));
+    if( ($('#document').get(0).files.length === 0) )
+    {
+        var icon = document.createElement("span");
+        icon.className ="glyphicon glyphicon-remove-circle";
+        document.getElementById("errormsg").appendChild(icon);
+        //alert("inside function if");
+        console.log("no files selected");
+        //alert("inside function call");
+        console.log(1);
+        document.getElementById("errormsg").innerHTML ="<span class='glyphicon glyphicon-remove' ></span> Please select file before upload";
+        $('#myspan').css('display', 'block');
+        console.log(2);
+        setTimeout(function(){
+        document.getElementById("errormsg").innerHTML = '';
+        }, 3000);
+        return false;
+    }
+    return true;
+}
+</script>
+<script>
+    document.body.style.opacity='1';
+</script>
+
+<a href="{% url 'music:createleave' %}" class="btn btn-success" style="float:right;margin-right:2%">
+    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp Return
+</a>
+<h3 id="errormsg" style="color:red;text-align:center;"></h3>
+<div class="attachmentdiv">
+<div class="attachmentrntab">
+    <table id="customers">
+      <tr>
+        <th>Id</th>
+        <th>File Name</th>
+        <th>File Extension</th>
+        <th>Delete</th>
+      </tr>
+  {% for attachments in all_attachments %}
+          <tr id="attachments_{{ attachments.id }}">
+            <td>{{ attachments.id }}</td>
+            <td><a target= "_blank" href = "http://127.0.0.1:8000/music/media/{{ attachments.file_name}}.{{ attachments.file_extension }}">{{ attachments.file_name }}</a></td>
+            <td>{{ attachments.file_extension }}</td>
+            <!--td><a href="{% url 'music:deleteattachment' attachments.id %}" class="btn btn-info" -->
+             <td><a href="javascript:void(0);" onclick="getRowid({{ attachments.id }})">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </a></td>
+        </tr>
+   {% endfor %}
+
+    </table>
+</div>
+    <div class="attachmentrn">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="document" id="document" style="margin: auto">
+            <br>
+            <button type="submit" name="loadfile" style="margin-bottom:3px;" onclick="return Enablecontrols();" class="btn btn-primary btn-lg active js-upload-photos">
+                <span class="glyphicon glyphicon-cloud-upload"></span>
+                Upload File</button>
+        </form>
+    </div>
+</div>
+{%  endblock %}

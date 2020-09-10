@@ -1,0 +1,87 @@
+{% extends 'music/base.html' %}
+{% block title %}Create Employees {% endblock %}
+{% load static %}
+{% block body %}
+
+<script>
+function myFunction() {
+  var x = document.getElementById("departmentname").value;
+  document.getElementById("demo").innerHTML = "You selected: " + x;
+  $('#departmentname').select2();
+}
+</script>
+<script type="text/javascript">
+$(document).ready(function()
+{
+    //alert("Inside seelct 2")
+    $('#departmentname').select2();
+});
+</script>
+<h2 style="text-align:center">Create Employees using Department List of values</h2>
+<br>
+ {% if messages %}
+  {% for message in messages %}
+  <p style="color:green;text-align:center"><span class="glyphicon glyphicon-ok" style="color: green; font-size: 20px"></span>{{ message }}</p>
+  {% endfor %}
+{% endif %}
+<div class="container" style="border:2px green">
+
+  <form class="form-horizontal" action="{% url 'music:createemprecord' %}" method="post">
+
+    {% csrf_token %}
+    <div class="form-group col-md">
+      <label class="control-label col-sm-2" for="firstname">FirstName:</label>
+      <div class="col-sm-10">
+      <input type="text" class="form-control" id="firstname" placeholder="FirstName"  name="firstname">
+        </div>
+    </div>
+    <div class="form-group col-md">
+      <label class="control-label col-sm-2" for="middlename">MiddleName:</label>
+      <div class="col-sm-10">
+      <input type="text" class="form-control" id="middlename" placeholder="MiddleName" name="middlename">
+        </div>
+    </div>
+    <div class="form-group col-md">
+      <label class="control-label col-sm-2" for="lastname">LastName:</label>
+      <div class="col-sm-10">
+      <input type="text" class="form-control" id="lastname" placeholder="LastName" name="lastname">
+        </div>
+    </div>
+    <div class="form-group col-md">
+      <label class="control-label col-sm-2" for="emailid">Email Id:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="emailid" placeholder="Email Id" name="emailid">
+      </div>
+    </div>
+    <div class="form-group col-md">
+      <label class="control-label col-sm-2" for="dob">Date of Birth:</label>
+        <div class='input-group date' id='datetimepicker1'>
+          <div class="col-sm-12">
+          <input type="date" class="form-control" id="dob" placeholder="Date of Birth" name="dob" data-date="" data-date-format="DD MMMM YYYY" style="border-radius:5px">
+          </div>
+
+        </div>
+    </div>
+    <div class="form-group col-md-auto">
+      <label class="control-label col-sm-2" for="departmentname">Department:</label>
+      <div class="col-sm-10">
+      <select id="departmentname" class="form-control selectpicker" data-style="btn-danger" onchange="myFunction()" onclick="myFunction()"  name="departmentname">
+        {% for result in all_departments %}
+            <option value="{{ result.id }}">{{ result.department_name }}</option>
+        {% endfor %}
+       </select>
+      </div>
+    </div>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+     <button type="submit" class="btn btn-danger mr-10" name="createbtn" value="1">Submit</button>
+     <a href="{% url 'music:index' %}" class="btn btn-primary" class="btn btn-primary">Cancel</a>
+      <p id="demo"></p>
+    </div>
+  </div>
+
+  </form>
+</div>
+
+
+{% endblock %}

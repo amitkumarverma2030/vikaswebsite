@@ -1,0 +1,229 @@
+.body2{
+     background: url("images/baclground_image.jpg");
+     opacity: 0;
+     transition: opacity 4s;
+    -webkit-transition: opacity 4s; /* Safari */
+    }
+.body2tran{
+    -webkit-transition: opacity 2s ease-in;
+    -moz-transition: opacity 2s ease-in;
+    -o-transition: opacity 2s ease-in;
+    -ms-transition: opacity 2s ease-in;
+    transition: opacity 2s ease-in;
+}
+.body1{
+     background-color: #85929E;
+     opacity: 0;
+     transition: opacity 4s;
+    -webkit-transition: opacity 4s; /* Safari */
+    }
+.body3{
+     background-color: #F5EEF8;
+     opacity: 0;
+     transition: opacity 4s;
+    -webkit-transition: opacity 4s; /* Safari */
+    }
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.attachmentdiv
+{
+    width:90%;
+    height:90%;
+    margin: 4% auto 5% auto;
+    border-style: outset;
+    border-top: 25px solid;
+    border-left: 13px solid;
+    border-right: 13px solid;
+    border-bottom: 25px solid;
+    border-color: #808B96;
+    background-color: #E5E7E9;
+    box-shadow: 2px 7px 10px 2px #17202A;
+    color:black;
+    -webkit-transition: opacity 2s ease-in;
+    -moz-transition: opacity 2s ease-in;
+    -o-transition: opacity 2s ease-in;
+    -ms-transition: opacity 2s ease-in;
+    transition: opacity 2s ease-in;
+}
+.attachmentrntab
+{
+    text-align:center;
+    /*border: 2px solid green;*/
+    margin-bottom: 3%;
+}
+.attachmentrn
+{
+    text-align:center;
+    /*border: 2px solid red;*/
+}
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+
+}
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+
+}
+
+#customers tr:nth-child(even){background-color: #D5DBDB ;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #85C1E9;
+  color: #CD6155 ;
+  marign-top: 10px;
+  text-align:center;
+}
+input.date
+{
+  background-image : url('images/b_calendar1.png');
+  background-Position : 100% center;
+  background-Repeat :no-repeat;
+  cursor:pointer;
+}
+.navbar
+{
+    border-radius: 0;
+}
+.navbar-brand
+{
+    font-family: 'Satisfy', cursive;
+    margin-top:0;
+    padding-top:2px;
+}
+.nav_bar11 {
+background-color: #2626567;
+}
+.footerColor
+{
+    background-color: #626567;
+    color: white;
+}
+button {
+    margin-right: 20px;
+}
+.columnGrid {
+  float: left;
+  width: 45%;
+  padding: 10px;
+  margin-left:5%;
+  overflow: hidden;
+}
+.row
+{
+    height:100%;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.card {
+  box-shadow: 0 4px 8px 0 #34495E;
+  transition: 0.3s;
+  width: 90%;
+  background-color:#383838;
+  color:white;
+  border-radius:5px;
+
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 #D35400;
+}
+
+.container {
+  padding: 2px 16px;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+/* The Modal (background) */
+.centervik {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+
+
+ /*Modal Content/Box*/
+.modal-contentvik {
+  background-color: #F2F3F4;
+  margin: 8% auto 15% auto;
+  width: 39%;
+  box-shadow: 0 4px 8px 0 #5DADE2;
+  border-radius:5px;
+  overflow: hidden;
+  text-align:center;
+
+  -webkit-transition: opacity 2s ease-in;
+    -moz-transition: opacity 2s ease-in;
+    -o-transition: opacity 2s ease-in;
+    -ms-transition: opacity 2s ease-in;
+    transition: opacity 2s ease-in;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: black;
+}
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.containervik {
+  padding: 16px;
+  text-align: center;
+  width:50%;
+}
+.pageload
+{
+background-color: #F2F3F4;
+-webkit-transition: opacity 2s ease-in;
+    -moz-transition: opacity 2s ease-in;
+    -o-transition: opacity 2s ease-in;
+    -ms-transition: opacity 2s ease-in;
+    transition: opacity 2s ease-in;
+    overflow: hidden;
+}
